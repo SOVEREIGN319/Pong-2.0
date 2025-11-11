@@ -1,20 +1,20 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement; // Required for checking the current scene name
+using UnityEngine.SceneManagement; 
 
 public class BallManager : MonoBehaviour
 {
-    // --- Prefabs for different scenes ---
-    // You will drag the two different ball prefabs here in the Inspector.
+    // Prefabs for different scenes
     [Tooltip("The Ball Prefab to use when the scene is 'HorizontalPong'.")]
     public GameObject horizontalBallPrefab;
 
     [Tooltip("The Ball Prefab to use when the scene is 'VerticalPong'.")]
     public GameObject verticalBallPrefab;
 
-    // --- Scene Name Constants (Change these if your SceneSwapManager uses different names) ---
+    // Scene Name Constants
     private const string HorizontalSceneName = "HorizontalPong";
     private const string VerticalSceneName = "VerticalPong";
+    
     // -----------------------------------------------------------------------------------------
 
     [Tooltip("The point where the ball should spawn (set this in the Inspector).")]
@@ -58,12 +58,12 @@ public class BallManager : MonoBehaviour
             return;
         }
 
-        // 1. Get the name of the current active scene
+        // Get the name of the current active scene
         string currentSceneName = SceneManager.GetActiveScene().name;
 
         GameObject ballToSpawn = null;
 
-        // 2. Check the current scene name to select the correct prefab
+        // Check the current scene name to select the correct prefab
         if (currentSceneName == HorizontalSceneName)
         {
             ballToSpawn = horizontalBallPrefab;
@@ -79,7 +79,7 @@ public class BallManager : MonoBehaviour
             ballToSpawn = horizontalBallPrefab;
         }
 
-        // 3. Final check and instantiation
+        // Final check and instantiation
         if (ballToSpawn != null)
         {
             // Instantiate the prefab at the spawn point's position and rotation
@@ -91,4 +91,5 @@ public class BallManager : MonoBehaviour
             Debug.LogError("The required Ball Prefab is missing! Please assign both Horizontal and Vertical Ball Prefabs in the Inspector.");
         }
     }
+
 }
