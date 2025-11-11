@@ -26,7 +26,7 @@ public class ScoreManager : MonoBehaviour
 
     void Awake()
     {
-        // CRUCIAL FIX: Ensure time is always running when this script starts or reloads a scene.
+        // Ensure time is always running when this script starts or reloads a scene.
         Time.timeScale = 1f;
 
         if (Instance == null)
@@ -41,7 +41,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    // ⭐ NEW METHOD: Public function to reset all game state variables
+    // Public function to reset all game state variables
     public void ResetScoresAndState()
     {
         playerScore = 0;
@@ -57,10 +57,10 @@ public class ScoreManager : MonoBehaviour
         if (isGameOver)
             return;
 
-        // 1. Update Timer
+        // Update Timer
         gameTimerSeconds += Time.deltaTime;
 
-        // 2. Check for time limit (5 minutes * 60 seconds)
+        // Check for time limit (5 minutes * 60 seconds)
         if (gameTimerSeconds >= maxTimeMinutes * 60f)
         {
             CheckGameEnd(true);
@@ -94,9 +94,9 @@ public class ScoreManager : MonoBehaviour
             aiScoreText.text = $"{aiScore}";
     }
 
-    /// <summary>
+
     /// Checks if the game-ending conditions have been met and loads the next scene.
-    /// </summary>
+    
     private void CheckGameEnd(bool isTimeOut)
     {
         if (isGameOver)
@@ -104,7 +104,7 @@ public class ScoreManager : MonoBehaviour
 
         string sceneToLoad = "";
 
-        // --- WIN/LOSS LOGIC --- (Omitted for brevity, but stays here)
+        // Win/Loss Logic
         if (playerScore >= maxScore)
         {
             sceneToLoad = winSceneName;
@@ -125,4 +125,5 @@ public class ScoreManager : MonoBehaviour
             SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
         }
     }
+
 }
