@@ -23,16 +23,16 @@ public class BallSoundFX : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // 1. Safety check: Ensure the AudioSource is valid and the array has clips
+        // Safety check: Ensure the AudioSource is valid and the array has clips
         if (audioSource != null && HitSoundClips.Length > 0)
         {
-            // 2. Select a random index from the array
+            // Select a random index from the array
             int randomIndex = Random.Range(0, HitSoundClips.Length);
 
-            // 3. Get the random clip
+            // Get the random clip
             AudioClip clipToPlay = HitSoundClips[randomIndex];
 
-            // 4. Play the selected sound clip once
+            // Play the selected sound clip once
             audioSource.PlayOneShot(clipToPlay);
         }
         else if (HitSoundClips.Length == 0)
@@ -40,4 +40,5 @@ public class BallSoundFX : MonoBehaviour
             Debug.LogWarning("HitSoundClips array is empty! Please assign audio clips in the Inspector.");
         }
     }
+
 }
