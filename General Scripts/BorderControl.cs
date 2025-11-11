@@ -6,7 +6,7 @@ public class BorderControl : MonoBehaviour
     private AudioSource audioSource;
     private BallManager ballManager;
 
-    //Filter what gets destroyed by Tag
+    // Filter what gets destroyed by Tag
     public string tagToDestroy = "Ball";
     public AudioClip soundToPlay;
 
@@ -73,3 +73,4 @@ public class BorderControl : MonoBehaviour
 
     }
 }
+
