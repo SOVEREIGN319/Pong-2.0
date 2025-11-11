@@ -22,13 +22,13 @@ public class RestartButton : MonoBehaviour
     // This method is called by the UI Button's OnClick() event
     public void StartTransition()
     {
-        // 1. Play Audio (if set up)
+        // Play Audio (if set up)
         if (soundToPlay != null && audioSource != null)
         {
             audioSource.PlayOneShot(soundToPlay);
         }
 
-        // 2. ⭐ RESET SCORES BEFORE LOADING THE SCENE
+        //  RESET SCORES BEFORE LOADING THE SCENE
         if (ScoreManager.Instance != null)
         {
             ScoreManager.Instance.ResetScoresAndState();
@@ -39,8 +39,9 @@ public class RestartButton : MonoBehaviour
             Debug.LogError("ScoreManager.Instance not found! Scores may not reset correctly.");
         }
 
-        // 3. Load the Game Scene
+        // Load the Game Scene
         Debug.Log("Loading scene: " + sceneName);
         SceneManager.LoadScene(sceneName);
     }
+
 }
