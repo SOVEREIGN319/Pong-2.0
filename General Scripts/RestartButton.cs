@@ -28,7 +28,7 @@ public class RestartButton : MonoBehaviour
             audioSource.PlayOneShot(soundToPlay);
         }
 
-        //  RESET SCORES BEFORE LOADING THE SCENE
+        //  Reset scores before loading scene
         if (ScoreManager.Instance != null)
         {
             ScoreManager.Instance.ResetScoresAndState();
@@ -45,3 +45,4 @@ public class RestartButton : MonoBehaviour
     }
 
 }
+
