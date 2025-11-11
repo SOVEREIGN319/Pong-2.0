@@ -25,18 +25,19 @@ public class EnemyControllerB : MonoBehaviour
                 return;
         }
 
-        // --- Horizontal movement logic ---
+        // Horizontal movement logic
 
-        // 1. Get target X (follow the ball horizontally)
+        // Get target X (follow the ball horizontally)
         float targetX = ballTransform.position.x;
 
-        // 2. Smoothly interpolate toward target X
+        // Smoothly interpolate toward target X
         float newX = Mathf.Lerp(rb.position.x, targetX, smoothness * followSpeed * Time.fixedDeltaTime);
 
-        // 3. Keep Y fixed, move only along X
+        // Keep Y fixed, move only along X
         Vector2 newPosition = new Vector2(newX, rb.position.y);
 
-        // 4. Apply smooth movement
+        // Apply smooth movement
         rb.MovePosition(newPosition);
     }
+
 }
