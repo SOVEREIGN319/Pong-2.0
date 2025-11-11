@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI; // Required for CanvasGroup
-using System.Collections; // Required for Coroutines
+using UnityEngine.UI; 
+using System.Collections; 
 
 public class SceneTransitionManager : MonoBehaviour
 {
@@ -50,13 +50,13 @@ public class SceneTransitionManager : MonoBehaviour
             return;
         }
 
-        // 1. Start playing the transition music immediately (if assigned)
+        // Start playing the transition music immediately (if assigned)
         if (TransitionMusicSource != null && TransitionMusicSource.clip != null)
         {
             TransitionMusicSource.Play();
         }
 
-        // 2. Start the combined fade coroutine
+        // Start the combined fade coroutine
         StartCoroutine(FadeOutAndLoad());
     }
 
@@ -64,7 +64,7 @@ public class SceneTransitionManager : MonoBehaviour
     {
         float timer = 0f;
 
-        // --- VISUAL AND AUDIO FADE OUT LOOP ---
+        //  VISUAL AND AUDIO FADE OUT LOOP
         while (timer < 1f)
         {
             timer += Time.deltaTime * VisualFadeRate;
@@ -72,17 +72,16 @@ public class SceneTransitionManager : MonoBehaviour
             // FADE SCREEN TO BLACK (Alpha from 0 to 1)
             FadePanelCanvasGroup.alpha = timer;
 
-            // FADE MENU MUSIC OUT (Volume from 1 to 0)
+            // Fade transition music out (Volume from 1 to 0)
             if (MenuMusicSource != null)
             {
                 MenuMusicSource.volume = Mathf.Lerp(0.02f, 0f, timer * AudioFadeRate);
             }
 
-            // FADE TRANSITION MUSIC IN (Volume from 0 to 1)
+            // Fade transition music in (Volume from 0 to 1)
             if (TransitionMusicSource != null)
             {
                 // Only start fading transition music in after a brief delay or based on a separate logic
-                // For simplicity, we'll cross-fade aggressively here:
                 TransitionMusicSource.volume = Mathf.Lerp(0f, 0.02f, timer * AudioFadeRate);
             }
 
@@ -96,8 +95,9 @@ public class SceneTransitionManager : MonoBehaviour
         // Wait a small moment on the black screen for effect
         yield return new WaitForSeconds(loadDelay);
 
-        // --- LOAD NEW SCENE ---
+        // LOAD NEW SCENE
         Debug.Log("Transition complete. Loading scene: " + sceneName);
         SceneManager.LoadScene(sceneName);
     }
+
 }
