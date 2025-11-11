@@ -5,7 +5,7 @@ public class EnemyControllerA : MonoBehaviour
     // Speed at which the paddle moves towards the target Y position (higher = faster response)
     public float followSpeed = 5f;
 
-    // How "snappy" the movement is (lower = smoother/slower to reach target)
+    // How snappy the movement is (lower = smoother/slower to reach target)
     public float smoothness = 0.1f;
 
     // Reference to the ball's transform
@@ -20,7 +20,7 @@ public class EnemyControllerA : MonoBehaviour
 
     void FixedUpdate()
     {
-        // --- Start Continuous Search Logic ---
+        // Start Continuous Search Logic
 
         // In case there is currently no reference to the ball (If it was destroyed)
         if (ballTransform == null)
@@ -40,21 +40,22 @@ public class EnemyControllerA : MonoBehaviour
                 return;
             }
         }
-        // --- End Continuous Search Logic ---
+        // End Continuous Search Logic
 
 
-        // --- Movement Logic (runs only when ballTransform is not null) ---
+        // Movement Logic (runs only when ballTransform is not null)
 
-        // 1. Determine the target Y position
+        // Determine the target Y position
         float targetY = ballTransform.position.y;
 
-        // 2. Smoothly calculate the next Y position using Mathf.Lerp
+        // Smoothly calculate the next Y position using Mathf.Lerp
         float newY = Mathf.Lerp(rb.position.y, targetY, smoothness);
 
-        // 3. Create the new position vector
+        // Create the new position vector
         Vector2 newPosition = new Vector2(rb.position.x, newY);
 
-        // 4. Use Rigidbody.MovePosition for smooth physics movement and collision handling
+        // Use Rigidbody.MovePosition for smooth physics movement and collision handling
         rb.MovePosition(newPosition);
     }
+
 }
